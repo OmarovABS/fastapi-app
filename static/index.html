@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍕 Роллы и Пицца - Доставка еды</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo-icon">🍕</span>
+                <span class="logo-text">RollPizza</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#menu" class="nav-link">Меню</a></li>
+                <li><a href="#about" class="nav-link">О нас</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartBtn">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="order-btn">Заказать</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Вкусные роллы</span>
+                    <br>
+                    <span class="gradient-text-2">и горячая пицца</span>
+                </h1>
+                <p class="hero-subtitle">Доставка свежей еды за 30 минут • Бесплатная доставка от 1000₽</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-primary">Смотреть меню</a>
+                    <a href="#contact" class="btn btn-secondary">Связаться</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">🍣</div>
+                <div class="floating-card card-2">🍕</div>
+                <div class="floating-card card-3">🥢</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставляем за 30 минут или еда бесплатно</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Свежие продукты</h3>
+                    <p>Только свежие ингредиенты высокого качества</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Бонусы и скидки</h3>
+                    <p>Накапливайте баллы и получайте скидки</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🍳</div>
+                    <h3>Лучшие повара</h3>
+                    <p>Профессиональные японские и итальянские мастера</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наше меню</h2>
+                <p class="section-subtitle">Выберите свои любимые блюда</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="rolls">Роллы</button>
+                <button class="tab-btn" data-tab="pizza">Пицца</button>
+                <button class="tab-btn" data-tab="sets">Сеты</button>
+                <button class="tab-btn" data-tab="drinks">Напитки</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Rolls -->
+                <div class="menu-item" data-category="rolls">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍣</div>
+                        <span class="menu-badge">Хит</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Филадельфия</h3>
+                        <p class="menu-description">Лосось, сливочный сыр, огурец, авокадо</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">450₽</span>
+                            <button class="add-to-cart" data-name="Филадельфия" data-price="450">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="rolls">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍣</div>
+                        <span class="menu-badge popular">Популярный</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Дракон</h3>
+                        <p class="menu-description">Угорь, авокадо, огурец, икра</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">520₽</span>
+                            <button class="add-to-cart" data-name="Дракон" data-price="520">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="rolls">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍣</div>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Калифорния</h3>
+                        <p class="menu-description">Краб, авокадо, огурец, икра</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">380₽</span>
+                            <button class="add-to-cart" data-name="Калифорния" data-price="380">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza -->
+                <div class="menu-item" data-category="pizza">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍕</div>
+                        <span class="menu-badge">Хит</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Маргарита</h3>
+                        <p class="menu-description">Томаты, моцарелла, базилик</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">550₽</span>
+                            <button class="add-to-cart" data-name="Маргарита" data-price="550">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="pizza">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍕</div>
+                        <span class="menu-badge popular">Популярная</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Пепперони</h3>
+                        <p class="menu-description">Пепперони, моцарелла, томатный соус</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">620₽</span>
+                            <button class="add-to-cart" data-name="Пепперони" data-price="620">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="pizza">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍕</div>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Четыре сыра</h3>
+                        <p class="menu-description">Моцарелла, пармезан, горгонзола, чеддер</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">680₽</span>
+                            <button class="add-to-cart" data-name="Четыре сыра" data-price="680">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sets -->
+                <div class="menu-item" data-category="sets">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍱</div>
+                        <span class="menu-badge new">Новинка</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Сет "Любимый"</h3>
+                        <p class="menu-description">Филадельфия, Дракон, Калифорния (24 шт)</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">1200₽</span>
+                            <button class="add-to-cart" data-name="Сет Любимый" data-price="1200">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="sets">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍱</div>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Сет "Премиум"</h3>
+                        <p class="menu-description">5 видов роллов + соусы (36 шт)</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">1800₽</span>
+                            <button class="add-to-cart" data-name="Сет Премиум" data-price="1800">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🥤</div>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Кола</h3>
+                        <p class="menu-description">Coca-Cola 0.5л</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">100₽</span>
+                            <button class="add-to-cart" data-name="Кола" data-price="100">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-image">
+                        <div class="menu-emoji">🍵</div>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Зеленый чай</h3>
+                        <p class="menu-description">Японский зеленый чай</p>
+                        <div class="menu-footer">
+                            <span class="menu-price">80₽</span>
+                            <button class="add-to-cart" data-name="Зеленый чай" data-price="80">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О нашем ресторане</h2>
+                    <p class="about-description">
+                        Мы - команда профессионалов, которые любят свою работу. Ежедневно мы готовим для вас 
+                        самые вкусные роллы и пиццу, используя только свежие продукты от проверенных поставщиков.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">5000+</span>
+                            <span class="stat-label">Довольных клиентов</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Позиций в меню</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5 лет</span>
+                            <span class="stat-label">На рынке</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-emoji">👨‍🍳</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Свяжитесь с нами</h2>
+                <p class="section-subtitle">Закажите доставку или задайте вопрос</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <p>+7 (999) 123-45-67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Адрес</h4>
+                            <p>г. Москва, ул. Вкусная, д. 1</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-text">
+                            <h4>Время работы</h4>
+                            <p>Ежедневно 10:00 - 23:00</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="tel" placeholder="Телефон" required>
+                    <textarea placeholder="Сообщение" rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🍕</span>
+                    <span class="logo-text">RollPizza</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Главная</a>
+                    <a href="#menu">Меню</a>
+                    <a href="#about">О нас</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link">📱</a>
+                    <a href="#" class="social-link">💬</a>
+                    <a href="#" class="social-link">📷</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 RollPizza. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Корзина</h3>
+                <button class="close-cart" id="closeCart">✕</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Корзина пуста</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span id="cartTotal">0₽</span>
+                </div>
+                <button class="btn btn-primary checkout-btn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
