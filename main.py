@@ -41,3 +41,7 @@ async def read_root():
 app.include_router(users_router)
 app.include_router(dish_router)
 app.include_router(orders_router)
+
+@app.get("/status")
+async def get_status():
+    return {"status": "working"}
