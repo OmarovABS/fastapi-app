@@ -3,21 +3,20 @@ from app.schemas.orders import OrderResponse
 
 class UserCreate(BaseModel):
     name: str
-    surname: str
     telephone: str = Field(min_length=11, max_length=11)
-    email: EmailStr
+
 
 class UserResponse(BaseModel):
     name: str
-    surname: str
     telephone: str = Field(min_length=11, max_length=11)
 
     model_config = ConfigDict(from_attributes=True)
 
 
 class UserOrders(BaseModel):
+    name: str
     telephone: str = Field(min_length=11, max_length=11)
-    email: EmailStr
+
 
 class UserOrdersResponse(BaseModel):
     orders: list[OrderResponse]

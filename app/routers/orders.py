@@ -15,4 +15,4 @@ async def order_create(
     user_telephone: str = Path(..., min_length=11, max_length=11),
     user_name: str = Path(..., description="User name"),
     db: AsyncSession = Depends(get_db)):
-    return await create_order(order_by_user=order_by_user, user_telephone=telephone, user_name=name, db=db)
+    return await create_order(order_by_user=order_by_user, user_telephone=user_telephone, user_name=user_name, db=db)

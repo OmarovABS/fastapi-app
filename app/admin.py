@@ -42,9 +42,9 @@ class UserAdmin(ModelView, model=User):
     name = "Пользователь"
     name_plural = "Пользователи"
     icon = "person"
-    column_list = ["id", "telephone", "email"]
-    column_searchable_list = ["telephone", "email"]
-    form_columns = ["telephone", "email"]
+    column_list = ["id", "name", "telephone"]
+    column_searchable_list = ["name","telephone"]
+    form_columns = ["name","telephone"]
 
 
 class DishAdmin(ModelView, model=Dish):

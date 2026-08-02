@@ -6,7 +6,7 @@ from app.db import get_db
 
 
 router = APIRouter(
-    prefix='/dish',
+    prefix='/menu',
     tags=['my_project']
 )
 

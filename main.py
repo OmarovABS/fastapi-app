@@ -1,6 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from sqladmin import Admin
+from pathlib import Path
 
 from app.db import Base, engine
 from app.routers import users_router, dish_router, orders_router
@@ -35,6 +37,13 @@ admin.add_view(OrderAdmin)
 @app.get("/")
 async def read_root():
     return {"message": "Hello"}
+
+@app.get("/mockup")
+async def serve_mockup():
+    mockup_path = Path(__file__).parent / "mockup.html"
+    if mockup_path.exists():
+        return FileResponse(mockup_path)
+    return {"error": "Mockup file not found"}
 
 
 # Подключаем роутеры вашего приложения

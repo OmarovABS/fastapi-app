@@ -7,26 +7,6 @@ from typing import List
 
 
 
-async def user_create(user: UserCreate, db: AsyncSession):
-    query = select(User).where(User.email==user.email)
-    query2 = select(User).where(User.telephone==user.telephone)
-    result = await db.execute(query)
-    result2 = await db.execute(query2)
-    chek_user = result.scalar_one_or_none()
-    chek_user2 = result2.scalar_one_or_none()
-    if chek_user or chek_user2:
-        raise HTTPException(status_code=400, detail="Пользователь с таким email или телефоном уже имеется!")
-    new_user = User(
-        name = user.name.capitalize(),
-        surname = user.surname.capitalize(),
-        telephone = user.telephone,
-        email = user.email
-    )
-    db.add(new_user)
-    await db.commit()
-    await db.refresh(new_user)
-    return new_user
-
 async def user_delete(user_id: int, db: AsyncSession) -> dict:
     query = select(User).where(User.id==user_id)
     result = await db.execute(query)
@@ -58,7 +38,7 @@ async def get_order_by_user(chek_user: UserOrders, db: AsyncSession) -> UserOrde
     query = (
         select(Order)
         .join(Order.user)
-        .where(User.telephone == chek_user.telephone,User.email == chek_user.email)
+        .where(User.telephone == chek_user.telephone,User.name == chek_user.name)
     )
     result = await db.execute(query)
     orders_by_users = result.scalars().all()
