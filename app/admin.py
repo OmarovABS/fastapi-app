@@ -5,25 +5,24 @@ from sqladmin import ModelView
 from sqladmin.authentication import AuthenticationBackend
 from app.db import Dish, User, Order
 
-# Загружаем переменные окружения
-load_dotenv()
+#==============================================================================================
 
+load_dotenv()
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 ADMIN_SECRET_KEY = os.getenv("ADMIN_SECRET_KEY")
 
-# 1. БЭКЕНД АУТЕНТИФИКАЦИИ
+#==============================================================================================
+
+
 class SimpleAdminAuth(AuthenticationBackend):
     async def login(self, request: Request) -> bool:
         form = await request.form()
         username = form.get("username")
         password = form.get("password")
-
-        # Проверяем данные строго из .env
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             request.session.update({"is_admin": True})
             return True
-
         return False
 
     async def logout(self, request: Request) -> bool:
@@ -33,11 +32,13 @@ class SimpleAdminAuth(AuthenticationBackend):
     async def authenticate(self, request: Request) -> bool:
         return request.session.get("is_admin") is True
 
-# Инициализируем бэкенд ключом из .env
+#==============================================================================================
+
 authentication_backend = SimpleAdminAuth(secret_key=ADMIN_SECRET_KEY)
 
 
-# 2. ОПРЕДЕЛЕНИЕ СТРУКТУРЫ АДМИН-ПАНЕЛИ (MODEL VIEWS)
+#==============================================================================================
+
 class UserAdmin(ModelView, model=User):
     name = "Пользователь"
     name_plural = "Пользователи"
@@ -46,6 +47,7 @@ class UserAdmin(ModelView, model=User):
     column_searchable_list = ["name","telephone"]
     form_columns = ["name","telephone"]
 
+#==============================================================================================
 
 class DishAdmin(ModelView, model=Dish):
     name = "Блюдо"
@@ -55,6 +57,7 @@ class DishAdmin(ModelView, model=Dish):
     column_searchable_list = ["title", "category"]
     form_columns = ["title", "price", "category", "description"]
 
+#==============================================================================================
 
 class OrderAdmin(ModelView, model=Order):
     name = "Заказ"

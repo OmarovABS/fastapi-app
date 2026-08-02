@@ -1,9 +1,12 @@
 from pydantic import BaseModel, Field, ConfigDict
 from decimal import Decimal
 
+#==============================================================================================
+
 class OrderCreate(BaseModel):
     product: str = Field(..., description="Product name")
 
+#==============================================================================================
 
 class OrderResponse(BaseModel):
     id: int

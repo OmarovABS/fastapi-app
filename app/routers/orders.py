@@ -4,13 +4,16 @@ from app.services import create_order
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db import get_db
 
+#==============================================================================================
+
 
 router = APIRouter(
-    prefix='/orders',)
+    prefix='/orders')
+
+#==============================================================================================
 
 @router.post('/create_order/{user_telephone}/{user_name}', response_model=OrderResponse,
-             summary="Создание заказа", tags=["Orders"]
-)
+summary="Создание заказа", tags=["Orders"])
 async def order_create(
     order_by_user: OrderCreate,
     user_telephone: str = Path(..., min_length=11, max_length=11),
