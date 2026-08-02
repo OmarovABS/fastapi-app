@@ -34,11 +34,11 @@ async def get_users(db: AsyncSession):
     return result.scalars().all()
 
 
-async def get_order_by_user(chek_user: UserOrders, db: AsyncSession) -> UserOrdersResponse:
+async def get_order_by_user(check_user: UserOrders, db: AsyncSession) -> UserOrdersResponse:
     query = (
         select(Order)
         .join(Order.user)
-        .where(User.telephone == chek_user.telephone,User.name == chek_user.name)
+        .where(User.telephone == check_user.telephone,User.name == check_user.name)
     )
     result = await db.execute(query)
     orders_by_users = result.scalars().all()

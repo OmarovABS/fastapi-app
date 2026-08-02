@@ -6,10 +6,11 @@ from app.db import get_db
 
 
 router = APIRouter(
-    prefix='/orders',
-    tags=['my_project']
+    prefix='/orders',)
+
+@router.post('/create_order/{user_telephone}/{user_name}', response_model=OrderResponse,
+             summary="Создание заказа", tags=["Orders"]
 )
-@router.post('/create_order/{user_telephone}/{user_name}', response_model=OrderResponse)
 async def order_create(
     order_by_user: OrderCreate,
     user_telephone: str = Path(..., min_length=11, max_length=11),
