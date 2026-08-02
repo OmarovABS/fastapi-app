@@ -5,7 +5,7 @@ from sqlalchemy import select, delete
 from app.db.models import User, Order
 from typing import List
 
-
+#=======================================================================================
 
 async def user_delete(user_id: int, db: AsyncSession) -> dict:
     query = select(User).where(User.id==user_id)
@@ -17,6 +17,8 @@ async def user_delete(user_id: int, db: AsyncSession) -> dict:
     await db.commit()
     return {"message": f"Пользователь под id: {user_id} успешно удален!"}
 
+#=======================================================================================
+
 async def table_clear(db: AsyncSession) -> dict:
     query = select(User)
     result = await db.execute(query)
@@ -24,15 +26,20 @@ async def table_clear(db: AsyncSession) -> dict:
     if len(total) == 0:
         return {"message": "Таблица уже пуста!"}
     delete_query = delete(User)
+    delete_query2 = delete(Order)
     await db.execute(delete_query)
+    await db.execute(delete_query2)
     await db.commit()
     return {"message": "Таблица успешно очищена!"}
+
+#==============================================================================================
 
 async def get_users(db: AsyncSession):
     query = select(User)
     result = await db.execute(query)
     return result.scalars().all()
 
+#==============================================================================================
 
 async def get_order_by_user(check_user: UserOrders, db: AsyncSession) -> UserOrdersResponse:
     query = (
