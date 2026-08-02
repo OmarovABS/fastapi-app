@@ -1,6 +1,5 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from sqladmin import Admin
 from pathlib import Path
 from app.db import Base, engine
@@ -17,7 +16,8 @@ async def lifespan(_: FastAPI):
 
 #==============================================================================================
 
-app = FastAPI(title='My_Project', lifespan=lifespan)
+app = FastAPI(title='My_Project', lifespan=lifespan,
+swagger_ui_parameters={"defaultModelsExpandDepth": -1})
 
 #==============================================================================================
 
