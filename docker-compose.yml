@@ -6,9 +6,10 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-    restart: on-failure  # Автоперезапуск при ошибке подключения
+    restart: on-failure
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Теперь это сработает идеально!
     volumes:
       - .:/app
 
@@ -23,6 +24,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    # ВОТ ЭТОТ БЛОК ОБЯЗАТЕЛЬНО НУЖНО ДОБАВИТЬ СЮДА:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 3s     # Проверять каждые 3 секунды
+      timeout: 3s      # Ждать ответа не больше 3 секунд
+      retries: 5       # Если 5 раз подряд упало — считать базу сломанной
 
 volumes:
   postgres_data:
