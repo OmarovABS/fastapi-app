@@ -42,5 +42,5 @@ async def clear_table(db: AsyncSession=Depends(get_db)) -> dict:
 @router.post('/get_order_by_user',
 summary="Получение заказов по пользователю",
 tags=["Users"])
-async def get_orders(cheсk_user: UserOrders, db: AsyncSession = Depends(get_db)) -> UserOrdersResponse:
-    return await get_order_by_user(cheсk_user=cheсk_user, db=db)
+async def get_orders(check_user: UserOrders, db: AsyncSession = Depends(get_db)) -> UserOrdersResponse:
+    return await get_order_by_user(check_user=check_user, db=db)

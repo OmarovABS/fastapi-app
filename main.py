@@ -5,7 +5,7 @@ from pathlib import Path
 from app.db import Base, engine
 from app.routers import users_router, dish_router, orders_router
 from app.admin import UserAdmin, DishAdmin, OrderAdmin, authentication_backend
-from fastapi import FastAPI, HTTPException, Response, Depends
+from fastapi import HTTPException, Response, Depends
 from authx import AuthX, AuthXConfig
 from app.schemas import AdminCreate
 from app.security_by_admin import security, config
@@ -64,7 +64,7 @@ async def get_status():
 
 
 @app.post("/login_by_admin", tags=["Login by Admin"], summary="Проверка на Админа")
-def login_by_admin(creds: AdminCreate, response: Response):
+async def login_by_admin(creds: AdminCreate, response: Response):
     if creds.username == ADMIN_USERNAME and creds.password == ADMIN_PASSWORD:
         token = security.create_access_token(uid="1")
         response.set_cookie(config.JWT_ACCESS_COOKIE_NAME, token)
