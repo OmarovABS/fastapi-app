@@ -5,6 +5,17 @@ from pathlib import Path
 from app.db import Base, engine
 from app.routers import users_router, dish_router, orders_router
 from app.admin import UserAdmin, DishAdmin, OrderAdmin, authentication_backend
+from fastapi import FastAPI, HTTPException, Response, Depends
+from authx import AuthX, AuthXConfig
+from app.schemas import AdminCreate
+from app.security_by_admin import security, config
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+ADMIN_SECRET_KEY = os.getenv("ADMIN_SECRET_KEY")
 
 #==============================================================================================
 
@@ -30,20 +41,12 @@ admin.add_view(UserAdmin)
 admin.add_view(DishAdmin)
 admin.add_view(OrderAdmin)
 
+
 #==============================================================================================
 
 @app.get("/", tags=["Home page"], summary="Начальная страница")
 async def read_root():
     return {"message": "Hello"}
-
-#==============================================================================================
-
-@app.get("/mockup", tags=["Project mockup"], summary="Примерный макет проекта")
-async def serve_mockup():
-    mockup_path = Path(__file__).parent / "mockup.html"
-    if mockup_path.exists():
-        return FileResponse(mockup_path)
-    return {"error": "Mockup file not found"}
 
 #==============================================================================================
 
@@ -53,6 +56,17 @@ app.include_router(orders_router)
 
 #==============================================================================================
 
-@app.get("/status", tags=["Project status"])
+@app.get("/status", tags=["Project status"], summary="Узнать статус проекта")
 async def get_status():
     return {"status": "working"}
+
+#==============================================================================================
+
+
+@app.post("/login_by_admin", tags=["Login by Admin"], summary="Проверка на Админа")
+def login_by_admin(creds: AdminCreate, response: Response):
+    if creds.username == ADMIN_USERNAME and creds.password == ADMIN_PASSWORD:
+        token = security.create_access_token(uid="1")
+        response.set_cookie(config.JWT_ACCESS_COOKIE_NAME, token)
+        return {"access_token": token}
+    raise HTTPException(status_code=401, detail="Incorrect username or password")
